@@ -1,0 +1,89 @@
+<div class = "container">
+  <h1 align = "center">News Manager</h1>
+    <table class="table table-striped">
+      <thead>
+        <tr>
+          <th scope="col">Author</th>
+          <th scope="col">Tags</th>
+          <th scope="col">Category</th>
+          <th scope="col">More</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor = "let element of newsArray">
+          <th scope="row">{{element.author}}</th>
+          <td>{{element.tags}}</td>
+          <td>{{element.category}}</td>
+          <td>
+            <div class="btn-row">
+              <button type="button" class="btn btn-warning" (click) = 'editRow(element)'>More</button>
+              <button type="button" class="btn btn-danger" id = "delete-btn" (click) = "removeNews(element)">Delete</button>
+            </div>
+          </td>
+        </tr>
+        <div class = "btn">
+        <button type="button" class="btn btn-success" id="add-btn" (click)='hideShowAdd()'>Add News</button>
+        </div>
+        <div *ngIf = "editable && !addable; else AddingNews">
+          <div class = "row">
+              <div class = "col-sm">
+                <label for="formGroupExampleInput2">Author</label>
+                <input type="text" class="form-control" id="formGroupExampleInput" value = {{editedNewsObj.author}} [(ngModel)] = "editedNewsObj.author">
+              </div>
+              <div class = "col-sm">
+                  <label for="formGroupExampleInput2">Category</label>
+                  <input type="text" class="form-control" id="formGroupExampleInput" value = {{editedNewsObj.category}} [(ngModel)] = "editedNewsObj.category">
+                </div>
+                <div class = "col-sm">
+                    <label for="formGroupExampleInput2">Tag</label>
+                    <input type="text" class="form-control" id="formGroupExampleInput" value = {{editedNewsObj.tags}} [(ngModel)] = "editedNewsObj.tags">
+                  </div>
+            </div>
+          <div class = "row">
+            <div class = "col-sm">
+                <div class="form-group">
+                    <label for="formGroupExampleInput2">Text</label>
+                    <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)] = "editedNewsObj.tekst">{{editedNewsObj.tekst}}</textarea>
+                  </div>
+            </div>
+          </div>
+          <div class = "row">
+              <div class = "col-sm">
+                  <button type="button" class="btn btn-warning" (click) = "editNews(editedNewsObj)">Edit & Save</button>
+              </div>
+            </div>
+        </div>
+        <ng-template #AddingNews>
+            <div *ngIf = "!editable && addable">
+                <div class = "row">
+                    <div class = "col-sm">
+                      <label for="formGroupExampleInput2">Author</label>
+                      <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)] = "editedNewsObj.author">
+                    </div>
+                    <div class = "col-sm">
+                        <label for="formGroupExampleInput2">Category</label>
+                        <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)] = "editedNewsObj.category">
+                      </div>
+                      <div class = "col-sm">
+                          <label for="formGroupExampleInput2">Tag</label>
+                          <input type="text" class="form-control" id="formGroupExampleInput" [(ngModel)] = "editedNewsObj.tags">
+                        </div>
+                  </div>
+                <div class = "row">
+                  <div class = "col-sm">
+                      <div class="form-group">
+                          <label for="formGroupExampleInput2">Text</label>
+                          <textarea class="form-control" id="exampleTextarea" rows="3" [(ngModel)] = "editedNewsObj.tekst"></textarea>
+                        </div>
+                  </div>
+                </div>
+                <div class = "row">
+                    <div class = "col-sm">
+                        <button type="button" class="btn btn-success" id="add-btn" (click)='addNews(editedNewsObj)'>Add NewOne</button>
+                    </div>
+                  </div>
+              </div>
+        </ng-template>
+      </tbody>
+    </table>
+</div>
