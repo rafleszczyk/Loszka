@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { NewsModel } from './../assets/models/NewsModel';
+import { NewsModel } from './../assets/models/news.model';
 import { NewsService } from './../assets/services/news.service';
 import { element } from 'protractor';
 @Component({
@@ -22,6 +22,7 @@ export class NewsComponent implements OnInit {
     this._newsService.getNews().subscribe(news => {
       news.forEach(el => {
         this.newsArray.push(el);
+        console.log(el)
       });
     });
   }

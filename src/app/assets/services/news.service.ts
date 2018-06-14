@@ -1,4 +1,4 @@
-import { NewsModel } from './../models/NewsModel';
+import { NewsModel } from './../models/news.model';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import { HttpClient } from '@angular/common/http';
